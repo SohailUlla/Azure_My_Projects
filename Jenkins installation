@@ -1,0 +1,33 @@
+# ---- INSTALL JENKINS ----
+sudo apt-get update
+sudo apt-get install openjdk-17-jdk -y
+java -version
+
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install jenkins -y
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+sudo ufw allow 8080/tcp
+sudo ufw reload
+sudo systemctl status jenkins
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# ---- UNINSTALL JENKINS ----
+sudo systemctl stop jenkins
+sudo systemctl disable jenkins
+sudo apt-get remove --purge jenkins -y
+sudo rm -f /etc/apt/sources.list.d/jenkins.list
+sudo apt-get update
+sudo rm -rf /var/lib/jenkins /etc/default/jenkins /etc/init.d/jenkins /usr/lib/systemd/system/jenkins.service
+sudo apt-get remove --purge openjdk-17-jdk -y
+sudo apt-get autoremove -y
+
+# ---- LOGOUT ----
+exit
