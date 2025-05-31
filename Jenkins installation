@@ -1,3 +1,5 @@
+# connect VM to PC
+ ssh -i /c/Users/lenovo/Downloads/jenkins_key.pem azureuser@ip address
 # ---- INSTALL JENKINS ----
 sudo apt-get update
 sudo apt-get install openjdk-17-jdk -y
