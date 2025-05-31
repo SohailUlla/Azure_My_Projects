@@ -20,6 +20,9 @@ sudo ufw allow 8080/tcp
 sudo ufw reload
 sudo systemctl status jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+sudo netstat -tuln | grep 8080        # Check Jenkins Is Running on Port 8080
+curl ifconfig.me  #To get IP address
+
 
 # ---- UNINSTALL JENKINS ----
 sudo systemctl stop jenkins
